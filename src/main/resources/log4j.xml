@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+	xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<param name="file" value="e:/logs/pos.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="pos-init" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<param name="file" value="e:/logs/pos-init.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="pos-error" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<param name="file" value="e:/logs/pos-error.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="pos-info" class="org.apache.log4j.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<param name="file" value="e:/logs/pos-info.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
+		</layout>
+	</appender>
+
+	<!-- categories -->
+	<!-- <category name="org.apache.commons"> <priority value="OFF" /> </category> 
+		<category name="org.apache.catalina.loader.WebappClassLoader"> <priority 
+		value="OFF" /> </category> -->
+	<root>
+		<!-- <priority value="DEBUG" /> -->
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="file" />
+	</root>
+
+	<logger name="init">
+		<appender-ref ref="pos-init" />
+	</logger>
+
+	<logger name="info">
+		<appender-ref ref="pos-info" />
+	</logger>
+
+	<logger name="error">
+		<appender-ref ref="pos-error" />
+	</logger>
+
+</log4j:configuration>

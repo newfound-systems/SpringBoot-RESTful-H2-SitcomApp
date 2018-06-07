@@ -1,0 +1,15 @@
+CREATE TABLE sitcom
+(
+   id BIGINT NOT NULL AUTO_INCREMENT,
+   sitcom_name VARCHAR(45) NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE actor
+(
+   id BIGINT NOT NULL AUTO_INCREMENT,
+   actor_fname VARCHAR(45) NOT NULL,
+   actor_lname VARCHAR(45) NOT NULL,
+   sitcom_id INTEGER NOT NULL,
+   PRIMARY KEY(id)
+);

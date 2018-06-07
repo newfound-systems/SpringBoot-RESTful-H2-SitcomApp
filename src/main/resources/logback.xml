@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+		   <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="org.springframework" level="info" additivity="false">
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="com.newfound.rest" level="debug" additivity="false">
+		<appender-ref ref="stdout" />
+	</logger>
+	
+	<logger name="com.dhl.pos" level="info" additivity="false">
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<root level="error">
+		<appender-ref ref="stdout" />
+	</root>
+
+</configuration>
