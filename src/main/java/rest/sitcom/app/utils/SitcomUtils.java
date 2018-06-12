@@ -2,15 +2,17 @@
  * Copyright NEWFOUND SYSTEMS to Present
  * All Rights Reserved
  */
-/**
- * 
- */
 package rest.sitcom.app.utils;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 public class SitcomUtils {
 
@@ -29,5 +31,18 @@ public class SitcomUtils {
 			return ipFromHeader;
 		}
 		return request.getRemoteAddr();
+	}
+	
+	/**
+	 * Remove Duplicates from Generic List Using Native API
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static <T> List<T> removeDuplicateItemsInList(List<T> request) {
+		if (request == null) {
+			return null;
+		}
+		return Lists.newArrayList(Sets.newHashSet(request));
 	}
 }

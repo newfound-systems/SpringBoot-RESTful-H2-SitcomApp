@@ -29,6 +29,7 @@ import rest.sitcom.app.model.Status;
 import rest.sitcom.app.repo.interfaces.ActorRepository;
 import rest.sitcom.app.repo.interfaces.SitcomRepository;
 import rest.sitcom.app.repo.services.ActorRepositoryService;
+import rest.sitcom.app.utils.SitcomUtils;
 
 @RestController
 @RequestMapping("/actor")
@@ -76,7 +77,9 @@ public class ActorController {
 		actors.addAll(actorsByFirstName);
 		actors.addAll(actorsByLastName);
 		
-		return new ResponseEntity<List<Actor>>(actors, HttpStatus.OK);
+		List<Actor> finalActors = SitcomUtils.removeDuplicateItemsInList(actors);
+		
+		return new ResponseEntity<List<Actor>>(finalActors, HttpStatus.OK);
 	}
 
 	/**
