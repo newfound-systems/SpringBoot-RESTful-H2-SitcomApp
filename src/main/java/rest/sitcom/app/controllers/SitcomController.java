@@ -53,7 +53,6 @@ public class SitcomController {
 	 */
 	@RequestMapping(value = "/find/all", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<Sitcom>> findAll(@AuthenticationPrincipal final UserDetails user) {
-		logger.info("Finding all Sitcom...");
 		@SuppressWarnings("unchecked")
 		List<Sitcom> sitcoms = IteratorUtils.toList(sitcomRepository.findAll().iterator());
 		return new ResponseEntity<List<Sitcom>>(sitcoms, HttpStatus.OK);
@@ -69,8 +68,33 @@ public class SitcomController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Sitcom> findOne(@AuthenticationPrincipal final UserDetails user,
 			@PathVariable("id") Long id) {
-		logger.info("Finding Sitcom id {0}", id);
 		return new ResponseEntity<Sitcom>(sitcomRepository.findOne(id), HttpStatus.OK);
+	}
+
+	/**
+	 * Find Sitcom by Name
+	 * 
+	 * @param sitcom_name
+	 * @return
+	 */
+	@RequestMapping(value = "/find/name/{sitcom_name}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Sitcom> findByName(@AuthenticationPrincipal final UserDetails user,
+			@PathVariable("sitcom_name") String sitcom_name) {
+		return new ResponseEntity<Sitcom>(sitcomRepository.findByName(sitcom_name), HttpStatus.OK);
+	}
+
+	/**
+	 * Find Sitcom by Name MatchAny
+	 * 
+	 * @param sitcom_name
+	 * @return
+	 */
+	@RequestMapping(value = "/find/name/matchAny/{sitcom_name}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<Sitcom>> findByNameMatchAny(@AuthenticationPrincipal final UserDetails user,
+			@PathVariable("sitcom_name") String sitcom_name) {
+		return new ResponseEntity<List<Sitcom>>(sitcomRepository.findByNameMatchAny(sitcom_name), HttpStatus.OK);
 	}
 
 	/**
@@ -84,7 +108,6 @@ public class SitcomController {
 	public ResponseEntity<Status> add(@AuthenticationPrincipal final UserDetails user, @RequestBody Sitcom sitcom) {
 		Status status = new Status();
 		try {
-			logger.info("Adding new Sitcom {0}", sitcom);
 			/**
 			 * Save
 			 */
@@ -108,7 +131,6 @@ public class SitcomController {
 			@PathVariable("sitcom_id") Long sitcom_id) {
 		Status status = new Status();
 		try {
-			logger.info("Deleting Sitcom id {0}", sitcom_id);
 			/**
 			 * Delete Actors
 			 */
@@ -134,7 +156,6 @@ public class SitcomController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<SitcomComprehensive> findComprehensive(@AuthenticationPrincipal final UserDetails user,
 			@PathVariable("id") Long id) {
-		logger.info("Finding Sitcom id {0}", id);
 		SitcomComprehensive comprehensive = new SitcomComprehensive();
 
 		Sitcom sitcom = sitcomRepository.findOne(id);

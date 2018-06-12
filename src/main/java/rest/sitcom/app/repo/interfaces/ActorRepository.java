@@ -47,7 +47,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	@Transactional
 	@Query(value = " DELETE FROM actor o WHERE o.sitcom_id = ?1 AND o.id = ?2 ", nativeQuery = true)
 	void delete(@Param("sitcom_id") Long sitcom_id, @Param("actor_id") Long actor_id);
-	
+
 	/**
 	 * Find Actor linked to a Sitcom
 	 * 
@@ -56,7 +56,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 */
 	@Query(value = " SELECT o FROM Actor o WHERE o.sitcom_id = ?1 ", nativeQuery = false)
 	List<Actor> findSitcomActors(@Param("sitcom_id") Long sitcom_id);
-	
+
 	/**
 	 * Find Actor by First Name
 	 * 
@@ -65,4 +65,20 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 */
 	@Query(value = " SELECT o FROM Actor o WHERE o.actor_fname = ?1 ", nativeQuery = false)
 	List<Actor> findActorByFirstName(@Param("actor_fname") String actor_fname);
+
+	/**
+	 * Named Query MatchAny First Name
+	 * 
+	 * @param name
+	 * @return
+	 */
+	List<Actor> findByFirstNameMatchAny(@Param("name") String name);
+	
+	/**
+	 * Named Query MatchAny Last Name
+	 * 
+	 * @param name
+	 * @return
+	 */
+	List<Actor> findByLastNameMatchAny(@Param("name") String name);
 }

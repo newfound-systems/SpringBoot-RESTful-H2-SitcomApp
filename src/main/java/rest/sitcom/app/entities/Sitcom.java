@@ -12,10 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "sitcom")
+@NamedQueries({ @NamedQuery(name = "Sitcom.findByName", query = "FROM Sitcom o WHERE o.sitcom_name = ? "),
+		@NamedQuery(name = "Sitcom.findByNameMatchAny", query = "FROM Sitcom o WHERE LOWER(o.sitcom_name) LIKE CONCAT('%', ?,'%')") })
 public class Sitcom implements Serializable {
 
 	private static final long serialVersionUID = 292813837894653090L;

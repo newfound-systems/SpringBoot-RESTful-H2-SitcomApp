@@ -14,40 +14,40 @@
 		<param name="append" value="true" />
 		<param name="maxFileSize" value="10MB" />
 		<param name="maxBackupIndex" value="10" />
-		<param name="file" value="e:/logs/pos.log" />
+		<param name="file" value="e:/logs/app.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
 		</layout>
 	</appender>
 
-	<appender name="pos-init" class="org.apache.log4j.RollingFileAppender">
+	<appender name="app-init" class="org.apache.log4j.RollingFileAppender">
 		<param name="append" value="true" />
 		<param name="maxFileSize" value="10MB" />
 		<param name="maxBackupIndex" value="10" />
-		<param name="file" value="e:/logs/pos-init.log" />
+		<param name="file" value="e:/logs/app-init.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
 		</layout>
 	</appender>
 
-	<appender name="pos-error" class="org.apache.log4j.RollingFileAppender">
+	<appender name="app-error" class="org.apache.log4j.RollingFileAppender">
 		<param name="append" value="true" />
 		<param name="maxFileSize" value="10MB" />
 		<param name="maxBackupIndex" value="10" />
-		<param name="file" value="e:/logs/pos-error.log" />
+		<param name="file" value="e:/logs/app-error.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
 		</layout>
 	</appender>
 
-	<appender name="pos-info" class="org.apache.log4j.RollingFileAppender">
+	<appender name="app-info" class="org.apache.log4j.RollingFileAppender">
 		<param name="append" value="true" />
 		<param name="maxFileSize" value="10MB" />
 		<param name="maxBackupIndex" value="10" />
-		<param name="file" value="e:/logs/pos-info.log" />
+		<param name="file" value="e:/logs/app-info.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="%-5p %d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [App] [%t] (%F:%L) (%M) %m%n" />
@@ -66,15 +66,15 @@
 	</root>
 
 	<logger name="init">
-		<appender-ref ref="pos-init" />
+		<appender-ref ref="app-init" />
 	</logger>
 
 	<logger name="info">
-		<appender-ref ref="pos-info" />
+		<appender-ref ref="app-info" />
 	</logger>
 
 	<logger name="error">
-		<appender-ref ref="pos-error" />
+		<appender-ref ref="app-error" />
 	</logger>
 
 </log4j:configuration>

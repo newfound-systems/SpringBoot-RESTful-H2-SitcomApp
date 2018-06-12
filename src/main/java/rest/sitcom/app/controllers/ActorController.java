@@ -46,10 +46,10 @@ public class ActorController {
 	ActorRepositoryService actorRepositoryService;
 
 	/**
-	 * Find All Actors(s)
+	 * Find All
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link Actor}
 	 */
 	@RequestMapping(value = "/find/all", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<Actor>> findAll(@AuthenticationPrincipal final UserDetails user) {
@@ -58,10 +58,32 @@ public class ActorController {
 	}
 
 	/**
+	 * Find by Name MatchAny
+	 * 
+	 * @param id
+	 * @return {@link Actor}
+	 */
+	@RequestMapping(value = "/find/name/matchAny/{name}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<Actor>> findByNameMatchAny(@AuthenticationPrincipal final UserDetails user,
+			@PathVariable("name") String name) {
+		logger.info("Finding Actor(s) by First or Last Name...");
+		
+		List<Actor> actorsByFirstName = actorRepository.findByFirstNameMatchAny(name);
+		List<Actor> actorsByLastName = actorRepository.findByLastNameMatchAny(name);
+		
+		List<Actor> actors = Lists.newArrayList();
+		actors.addAll(actorsByFirstName);
+		actors.addAll(actorsByLastName);
+		
+		return new ResponseEntity<List<Actor>>(actors, HttpStatus.OK);
+	}
+
+	/**
 	 * Find Actor
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link Actor}
 	 */
 	@RequestMapping(value = "/find/{sitcom_id}/actor/{actor_id}", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -77,7 +99,7 @@ public class ActorController {
 	 * @param user
 	 * @param sitcom_id
 	 * @param actor_id
-	 * @return
+	 * @return {@link Status}
 	 */
 	@RequestMapping(value = "/delete/{sitcom_id}/actor/{actor_id}", method = RequestMethod.DELETE, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -102,7 +124,7 @@ public class ActorController {
 	 * 
 	 * @param user
 	 * @param actor
-	 * @return
+	 * @return {@link Status}
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Status> add(@AuthenticationPrincipal final UserDetails user, @RequestBody Actor actor) {
@@ -118,25 +140,25 @@ public class ActorController {
 	}
 
 	/**
-	 * Find Sitcom Comprehensive
+	 * Find Actor / Sitcom Comprehensive
 	 * 
 	 * @param id
-	 * @return
+	 * @return {@link SitcomComprehensive}
 	 */
 	@RequestMapping(value = "/find/multi/fname/{fname}", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<SitcomComprehensive> findComprehensive(@AuthenticationPrincipal final UserDetails user,
 			@PathVariable("fname") String actor_fname) {
-	
+
 		logger.info("Finding Actor in Multiple Sitcom Actor FirstName {0}", actor_fname);
 		SitcomComprehensive comprehensive = new SitcomComprehensive();
 
 		List<Actor> actors = actorRepository.findActorByFirstName(actor_fname);
-		
+
 		List<Sitcom> sitcoms = Lists.newArrayList();
 		Sitcom sitcom = null;
-		for (Actor o : actors) {
-			sitcom = sitcomRepository.findOne(o.getSitcom_id());
+		for (Actor actor : actors) {
+			sitcom = sitcomRepository.findOne(actor.getSitcom_id());
 			sitcoms.add(sitcom);
 		}
 		comprehensive.setSitcoms(sitcoms);
