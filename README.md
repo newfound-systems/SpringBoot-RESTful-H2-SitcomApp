@@ -16,7 +16,7 @@ Comprehensive Spring RESTful Server and Client Application with CRUD Service (H2
 
 ## Running the server
 Spring Boot Main Class, Just run below class like any another Java Code
-* rest.sitcom.app.server.@SpringBootApplication
+* rest.sitcom.app.server.SpringBootApplication
 
 ### How to access H2 Console
 * http://localhost:8080/h2-console
