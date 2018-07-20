@@ -1,9 +1,9 @@
-INSERT INTO sitcom VALUES (1,'Sienfeld Season 1');
+INSERT INTO sitcom VALUES (1,'Seinfeld Season 1');
 INSERT INTO sitcom VALUES (2,'Everybody Loves Raymond Family');
 INSERT INTO sitcom VALUES (3,'All in the Family');
-INSERT INTO sitcom VALUES (4,'Sienfeld Season 2');
+INSERT INTO sitcom VALUES (4,'Seinfeld Season 2');
 
-INSERT INTO actor VALUES (1, 'Jerry', 'Sienfeld',1);
+INSERT INTO actor VALUES (1, 'Jerry', 'Seinfeld',1);
 INSERT INTO actor VALUES (2, 'George', 'Costanza',1);
 INSERT INTO actor VALUES (3, 'Cosmos', 'Kramer',1);
 INSERT INTO actor VALUES (4, 'John', 'Newman',1);

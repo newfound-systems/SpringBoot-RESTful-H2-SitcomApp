@@ -23,7 +23,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 * Find All
 	 * 
 	 * @param code
-	 * @return
+	 * @return {@link Actor}
 	 */
 	@Query(value = " SELECT o FROM Actor o ", nativeQuery = false)
 	List<Actor> findAll();
@@ -32,7 +32,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 * Find Actor
 	 * 
 	 * @param actor_id
-	 * @return
+	 * @return {@link Actor}
 	 */
 	@Query(value = " SELECT o FROM Actor o WHERE o.sitcom_id = ?1 AND o.id = ?2 ", nativeQuery = false)
 	Actor findOne(@Param("sitcom_id") Long sitcom_id, @Param("actor_id") Long actor_id);
@@ -52,7 +52,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 * Find Actor linked to a Sitcom
 	 * 
 	 * @param sitcom_id
-	 * @return
+	 * @return {@link Actor}
 	 */
 	@Query(value = " SELECT o FROM Actor o WHERE o.sitcom_id = ?1 ", nativeQuery = false)
 	List<Actor> findSitcomActors(@Param("sitcom_id") Long sitcom_id);
@@ -61,7 +61,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 * Find Actor by First Name
 	 * 
 	 * @param actor_fname
-	 * @return
+	 * @return {@link Actor}
 	 */
 	@Query(value = " SELECT o FROM Actor o WHERE o.actor_fname = ?1 ", nativeQuery = false)
 	List<Actor> findActorByFirstName(@Param("actor_fname") String actor_fname);
@@ -70,7 +70,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 * Named Query MatchAny First Name
 	 * 
 	 * @param name
-	 * @return
+	 * @return {@link Actor}
 	 */
 	List<Actor> findByFirstNameMatchAny(@Param("name") String name);
 	
@@ -78,7 +78,7 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
 	 * Named Query MatchAny Last Name
 	 * 
 	 * @param name
-	 * @return
+	 * @return {@link Actor}
 	 */
 	List<Actor> findByLastNameMatchAny(@Param("name") String name);
 }
