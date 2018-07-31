@@ -13,6 +13,7 @@ Comprehensive Spring RESTful Server and Client Application with CRUD Service (H2
 * Jackson Bind
 * Apache Tomcat 8+
 * Advanced Rest Client or PostMan for REST Client Testing
+* Aspect
 
 ## Running the server
 Spring Boot Main Class, Just run below class like any another Java Code
