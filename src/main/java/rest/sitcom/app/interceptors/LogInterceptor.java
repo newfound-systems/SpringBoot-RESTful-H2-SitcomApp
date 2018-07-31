@@ -38,8 +38,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 
 		Principal user = request.getUserPrincipal();
 		String username = "";
-		if(user != null) {
-			username =StringUtils.trimToEmpty(user.getName());
+		if (user != null) {
+			username = StringUtils.trimToEmpty(user.getName());
 		}
 		if (ipAddress == null) {
 			ipAddress = request.getRemoteAddr();
@@ -66,8 +66,10 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 		String reqPath = reqUrl.toString();
 
 		Principal user = request.getUserPrincipal();
-		String username = StringUtils.trimToEmpty(user.getName());
-
+		String username = "";
+		if (user != null) {
+			username = StringUtils.trimToEmpty(user.getName());
+		}
 		if (ipAddress == null) {
 			ipAddress = request.getRemoteAddr();
 		}
